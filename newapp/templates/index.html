@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+      <div class="top">
+    <nav>
+      <h2 class="logo"><span>NEWS</span>now</h2>
+      <ul>
+          <li><a href="{% url 'headlines' %}">All</a></li>
+        <li><a href="{% url 'topnews' %}">Top</a></li>
+        <li><a href="{% url 'trendingnews' %}">Trending</a></li>
+        <li><a href="{% url 'sciencenews' %}">Science</a></li>
+        <li><a href="{% url 'enternews' %}">Entertainment</a></li>
+        <li><a href="{% url 'sportsnews' %}">Sports</a></li>
+      </ul>
+    </nav>
+  </div>
+      <br>
+      <br>
+
+<div class="row">
+    <div class="card-group" >
+        {% for value in alldata.data.articles %}
+        <div class="col-md-4">
+
+            <div class="card" style="margin: 2rem; height: 50rem">
+
+                <img src="{{ value.imageUrl }}" class="card-img-top" alt="Image" style="height:25rem">
+
+                <div class="card-body">
+                    <h4 class="card-title">{{ value.title }}</h4>
+                    <p class="card-text">{{ value.content }}</p>
+                </div>
+
+                <ul class="list-group list-group-flush">
+                <li class="list-group-item">Category : {{ value.categoryNames }}</li>
+                <li class="list-group-item">Author : {{ value.authorName }}</li>
+                </ul>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</body>
+</html>
